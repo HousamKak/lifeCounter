@@ -82,24 +82,26 @@
             }
         }
 
-        @media (max-width: 480px) {
+        
+        @media (max-width: 500px) {
             h1 {
-                font-size: 1.8rem;
-            }
-
-            .time-unit {
-                width: 90px;
-                height: 110px;
-            }
-
-            .time-unit span {
                 font-size: 1.5rem;
             }
 
+            .time-unit {
+                width: 75px; /* Adjusted width to fit four units in a row */
+                height: 90px; /* Adjusted height proportionally */
+            }
+
+            .time-unit span {
+                font-size: 1.2rem; /* Slightly smaller font size for readability */
+            }
+
             .time-label {
-                font-size: 0.8rem;
+                font-size: 0.7rem; /* Adjusted label font size */
             }
         }
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
