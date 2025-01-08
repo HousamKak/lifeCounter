@@ -20,7 +20,7 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             color: #ffffff;
             text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
@@ -29,15 +29,15 @@
         #timer {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
             font-weight: bold;
             justify-content: center;
         }
 
         .time-unit {
             position: relative;
-            width: 80px;
-            height: 120px;
+            width: 120px;
+            height: 150px;
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #00ffcc;
             border-radius: 10px;
@@ -49,13 +49,14 @@
         }
 
         .time-unit span {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #00ffcc;
             text-shadow: 0 0 10px #00ffcc;
+            word-wrap: break-word;
         }
 
         .time-label {
-            font-size: 0.8rem;
+            font-size: 1rem;
             color: #ffffff;
             position: absolute;
             bottom: 5px;
@@ -64,39 +65,39 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .time-unit {
-                width: 60px;
-                height: 90px;
+                width: 100px;
+                height: 130px;
             }
 
             .time-unit span {
-                font-size: 1.2rem;
+                font-size: 1.8rem;
             }
 
             .time-label {
-                font-size: 0.7rem;
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .time-unit {
-                width: 50px;
-                height: 75px;
+                width: 90px;
+                height: 110px;
             }
 
             .time-unit span {
-                font-size: 1rem;
+                font-size: 1.5rem;
             }
 
             .time-label {
-                font-size: 0.6rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -104,6 +105,7 @@
 </head>
 <body>
     <div class="container">
+    
         <div id="timer">
             <div class="time-unit" id="days">
                 <span>0</span>
