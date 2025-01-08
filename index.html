@@ -11,62 +11,52 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1d2671, #c33764);
-            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            background: #0f0f0f;
+            color: #00ffcc;
             text-align: center;
             overflow: hidden;
         }
 
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+        }
+
         #timer {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             font-weight: bold;
         }
 
         .time-unit {
             position: relative;
-            width: 80px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 100px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ffcc;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
             overflow: hidden;
+            box-shadow: 0 0 20px #00ffcc;
         }
 
-        .flip-card {
+        .time-unit span {
+            font-size: 2rem;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        .time-label {
+            font-size: 1rem;
+            color: #ffffff;
             position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            transform-origin: bottom;
-        }
-
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #ff4b5c;
-            color: #fff;
-            backface-visibility: hidden;
-            border-radius: 10px;
-        }
-
-        .flip-card-back {
-            background: #ff9068;
-            transform: rotateX(-180deg);
-        }
-
-        .time-unit .flipping {
-            animation: flip 0.6s ease;
+            bottom: 5px;
+            text-shadow: 0 0 5px #00ffcc;
         }
 
         @keyframes flip {
@@ -74,48 +64,37 @@
                 transform: rotateX(0deg);
             }
             50% {
-                transform: rotateX(-90deg);
+                transform: rotateX(90deg);
             }
             100% {
-                transform: rotateX(-180deg);
+                transform: rotateX(0deg);
             }
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        .flipping {
+            animation: flip 0.8s ease-in-out;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Countdown to Returning to Lebanon</h1>
         <div id="timer">
             <div class="time-unit" id="days">
-                <div class="flip-card">
-                    <div class="flip-card-front">0</div>
-                    <div class="flip-card-back">0</div>
-                </div>
+                <span>0</span>
+                <div class="time-label">DAYS</div>
             </div>
             <div class="time-unit" id="hours">
-                <div class="flip-card">
-                    <div class="flip-card-front">0</div>
-                    <div class="flip-card-back">0</div>
-                </div>
+                <span>0</span>
+                <div class="time-label">HOURS</div>
             </div>
             <div class="time-unit" id="minutes">
-                <div class="flip-card">
-                    <div class="flip-card-front">0</div>
-                    <div class="flip-card-back">0</div>
-                </div>
+                <span>0</span>
+                <div class="time-label">MINUTES</div>
             </div>
             <div class="time-unit" id="seconds">
-                <div class="flip-card">
-                    <div class="flip-card-front">0</div>
-                    <div class="flip-card-back">0</div>
-                </div>
+                <span>0</span>
+                <div class="time-label">SECONDS</div>
             </div>
         </div>
     </div>
@@ -129,8 +108,7 @@
             const difference = targetDate - now;
 
             if (difference <= 0) {
-                document.querySelectorAll(".flip-card-front").forEach(el => el.textContent = "0");
-                document.querySelectorAll(".flip-card-back").forEach(el => el.textContent = "0");
+                document.querySelectorAll("#timer .time-unit span").forEach(el => el.textContent = "0");
                 return;
             }
 
@@ -142,19 +120,13 @@
             const units = { days, hours, minutes, seconds };
 
             Object.keys(units).forEach(unit => {
+                const element = document.getElementById(unit).querySelector('span');
                 if (units[unit] !== previousValues[unit]) {
-                    const flipCard = document.getElementById(unit).querySelector('.flip-card');
-                    const front = flipCard.querySelector('.flip-card-front');
-                    const back = flipCard.querySelector('.flip-card-back');
-
-                    back.textContent = units[unit];
-
-                    flipCard.classList.add('flipping');
-
+                    element.classList.add('flipping');
                     setTimeout(() => {
-                        front.textContent = units[unit];
-                        flipCard.classList.remove('flipping');
-                    }, 600);
+                        element.textContent = units[unit];
+                        element.classList.remove('flipping');
+                    }, 400);
 
                     previousValues[unit] = units[unit];
                 }
